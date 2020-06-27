@@ -1,13 +1,5 @@
 <resources>
     <string name="app_name">Weather Forecast Application</string>
-    <string-array name="cities">
-        <item>Moscow</item>
-        <item>St. Petersburg</item>
-        <item>Yekaterinburg</item>
-        <item>Sochi</item>
-        <item>Vladivostok</item>
-    </string-array>
-
-    <string name="temperature">Temperature</string>
     <string name="format12Hour">dd.MM.yyyy</string>
+    <string name="weather_forecast">Weather forecast</string>
 </resources>
