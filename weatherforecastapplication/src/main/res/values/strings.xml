@@ -2,4 +2,6 @@
     <string name="app_name">Weather Forecast Application</string>
     <string name="format12Hour">dd.MM.yyyy</string>
     <string name="weather_forecast">Weather forecast</string>
+    <string name="enter_the_title">Enter the title</string>
+    <string name="settlements">Settlements</string>
 </resources>

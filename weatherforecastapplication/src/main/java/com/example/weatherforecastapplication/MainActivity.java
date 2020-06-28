@@ -2,9 +2,12 @@ package com.example.weatherforecastapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
         String[] cities = new String[]{
                 "Moscow",
@@ -23,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
                 "Vladivostok"
         };
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this,R.layout.spinner_item, cities
-        );
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(spinnerArrayAdapter);
+    }
+
+    public void clickChangeCity(View view) {
+        Intent intent = new Intent(this, CitySelectionActivity.class);
+        startActivity(intent);
     }
 }

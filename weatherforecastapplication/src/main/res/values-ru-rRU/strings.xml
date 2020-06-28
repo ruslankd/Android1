@@ -2,4 +2,6 @@
     <string name="app_name">Прогноз погоды</string>
     <string name="format12Hour">dd.MM.yyyy</string>
     <string name="weather_forecast">Прогноз погоды</string>
+    <string name="enter_the_title">Введите название</string>
+    <string name="settlements">Населенные пункты</string>
 </resources>
