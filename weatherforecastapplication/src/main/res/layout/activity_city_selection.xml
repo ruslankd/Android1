@@ -43,7 +43,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/enter_the_title"
+        android:hint="@string/enter_the_title"
+        android:textColorHint="#5E5E5E"
         android:drawableStart="@drawable/ic_baseline_search_24"
-        android:textColor="#5E5E5E"/>
+        android:textColor="#ffffff"/>
 </LinearLayout>
