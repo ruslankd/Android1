@@ -11,7 +11,31 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/frameBack">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonBackFromSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CC000000"
+                android:drawableStart="@drawable/ic_baseline_arrow_back_24"
+                android:paddingRight="5dp"
+                android:onClick="clickButtonBackFromSettings"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/frameBack">
 
         <Switch
             android:id="@+id/switch1"
@@ -20,7 +44,7 @@
             android:textColor="#5E5E5E"
             android:textSize="25sp"
             android:paddingLeft="5dp"
-            android:text="@string/light_theme"
+            android:text="@string/dark_theme"
             android:onClick="clickThemeSwitch"/>
 
     </FrameLayout>
