@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Boolean checkedDarkTheme = intent.getBooleanExtra("darkThemeFlag", false);
         if (checkedDarkTheme) {
-            //((View) findViewById(R.id.mainLayout)).setBackground(R.drawable);
+            ((View) findViewById(R.id.mainLayout)).setBackgroundResource(R.drawable.dark);
         }
 
         String[] cities = new String[]{

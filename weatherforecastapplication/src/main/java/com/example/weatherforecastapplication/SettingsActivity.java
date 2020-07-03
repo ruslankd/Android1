@@ -29,13 +29,19 @@ public class SettingsActivity extends AppCompatActivity {
         darkThemeSwitch.setChecked(settings.isDarkThemeFlag());
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("darkThemeFlag", settings.isDarkThemeFlag());
+        startActivity(intent);
+    }
+
     public void clickThemeSwitch(View view) {
         settings.setDarkTheme(darkThemeSwitch.isChecked());
     }
 
     public void clickButtonBackFromSettings(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("darkThemeFlag", settings.isDarkThemeFlag());
-        startActivity(intent);
+        onBackPressed();
     }
 }
