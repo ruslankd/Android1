@@ -36,8 +36,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/textViewCity"
@@ -71,16 +72,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 android:text="20°"
                 android:textColor="#FFFFFF"
-                android:textSize="100sp" />
+                android:textSize="100sp"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -108,9 +111,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <Button
                 android:id="@+id/buttonSettings"
@@ -119,8 +122,9 @@
                 android:layout_gravity="end"
                 android:background="#CC000000"
                 android:drawableEnd="@drawable/ic_baseline_settings_24"
-                android:paddingRight="5dp"
-                android:onClick="clickButtonSettings"/>
+                android:paddingEnd="5dp"
+                android:onClick="clickButtonSettings"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
     </FrameLayout>
 

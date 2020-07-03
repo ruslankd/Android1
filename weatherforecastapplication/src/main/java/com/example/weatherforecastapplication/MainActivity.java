@@ -3,16 +3,9 @@ package com.example.weatherforecastapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,62 +17,62 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String s = "onCreate";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onCreate";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
 
         Intent intent = getIntent();
-        Boolean checkedDarkTheme = intent.getBooleanExtra("darkThemeFlag", false);
+        boolean checkedDarkTheme = intent.getBooleanExtra("darkThemeFlag", false);
         if (checkedDarkTheme) {
             ((View) findViewById(R.id.mainLayout)).setBackgroundResource(R.drawable.dark);
         }
 
-        String[] cities = new String[]{
-                "Moscow",
-                "St. Petersburg",
-                "Yekaterinburg",
-                "Sochi",
-                "Vladivostok"
-        };
+//        String[] cities = new String[]{
+//                "Moscow",
+//                "St. Petersburg",
+//                "Yekaterinburg",
+//                "Sochi",
+//                "Vladivostok"
+//        };
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        String s = "onStart";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onStart";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        String s = "onResume";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onResume";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        String s = "onPause";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onPause";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        String s = "onStop";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onStop";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        String s = "onDestroy";
-        Toast.makeText(this, s, Toast.LENGTH_LONG);
+        String s = "MainActivity: onDestroy";
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
     }
 

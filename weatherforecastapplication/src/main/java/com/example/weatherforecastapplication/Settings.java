@@ -3,7 +3,7 @@ package com.example.weatherforecastapplication;
 public class Settings {
     private static Settings instance = null;
 
-    private Settings() {};
+    private Settings() {}
 
     public static Settings getInstance() {
         if (instance == null) {
