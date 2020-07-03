@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Weather Forecast Application</string>
+    <string name="format12Hour">dd.MM.yyyy</string>
+    <string name="weather_forecast">Weather forecast</string>
+</resources>
