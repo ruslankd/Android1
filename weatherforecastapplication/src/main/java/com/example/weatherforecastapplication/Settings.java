@@ -13,6 +13,14 @@ public class Settings {
     }
 
     private boolean darkTheme = false;
+    private String[] cities = new String[]{
+            "Moscow",
+            "St. Petersburg",
+            "Yekaterinburg",
+            "Sochi",
+            "Vladivostok"
+    };
+    private int currentIndexOfCity = 0;
 
     public boolean isDarkThemeFlag() {
         return darkTheme;
@@ -20,5 +28,21 @@ public class Settings {
 
     public void setDarkTheme(boolean darkTheme) {
         this.darkTheme = darkTheme;
+    }
+
+    public String[] getCities() {
+        return cities;
+    }
+
+    public void setCities(String[] cities) {
+        this.cities = cities;
+    }
+
+    public int getCurrentIndexOfCity() {
+        return currentIndexOfCity;
+    }
+
+    public void setCurrentIndexOfCity(int currentIndexOfCity) {
+        this.currentIndexOfCity = currentIndexOfCity;
     }
 }

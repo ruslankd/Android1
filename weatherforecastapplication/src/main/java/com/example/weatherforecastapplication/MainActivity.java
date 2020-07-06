@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG = "MyLog";
     Settings settings;
+    TextView textViewOfCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG, s);
 
         settings = Settings.getInstance();
-
-//        String[] cities = new String[]{
-//                "Moscow",
-//                "St. Petersburg",
-//                "Yekaterinburg",
-//                "Sochi",
-//                "Vladivostok"
-//        };
+        textViewOfCity = (TextView) findViewById(R.id.textViewCity);
     }
 
     @Override
@@ -48,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
 
+
+        textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
+
         View v = (View) findViewById(R.id.mainLayout);
-        if (settings.isDarkThemeFlag()) {
-            v.setBackgroundResource(R.drawable.dark);
-        } else {
-            v.setBackgroundResource(R.drawable.background);
-        }
+        v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
     }
 
     @Override
