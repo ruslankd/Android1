@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG = "MyLog";
+    Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
 
-        Intent intent = getIntent();
-        boolean checkedDarkTheme = intent.getBooleanExtra("darkThemeFlag", false);
-        if (checkedDarkTheme) {
-            ((View) findViewById(R.id.mainLayout)).setBackgroundResource(R.drawable.dark);
-        }
+        settings = Settings.getInstance();
 
 //        String[] cities = new String[]{
 //                "Moscow",
@@ -50,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         String s = "MainActivity: onResume";
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
+
+        View v = (View) findViewById(R.id.mainLayout);
+        if (settings.isDarkThemeFlag()) {
+            v.setBackgroundResource(R.drawable.dark);
+        } else {
+            v.setBackgroundResource(R.drawable.background);
+        }
     }
 
     @Override

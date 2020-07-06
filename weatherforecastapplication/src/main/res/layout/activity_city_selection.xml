@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".CitySelectionActivity"
     android:background="#1B1B1B">
@@ -37,14 +37,11 @@
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextCity"
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enter_the_title"
-        android:textColorHint="#5E5E5E"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:textColor="#ffffff"/>
+        app:queryHint="@string/enter_the_title"
+        app:searchHintIcon="@drawable/ic_baseline_search_24"
+        app:searchIcon="@drawable/ic_baseline_search_24"
+        />
 </LinearLayout>
