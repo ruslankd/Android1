@@ -27,7 +27,7 @@ public class CitySelectionActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 settings.setCurrentIndexOfCity(i);
-                onBackPressed();
+                finish();
             }
         });
     }

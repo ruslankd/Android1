@@ -3,6 +3,7 @@ package com.example.weatherforecastapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,5 +83,12 @@ public class MainActivity extends AppCompatActivity {
     public void clickButtonSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void onButtonInfoClick(View view) {
+        String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
+        Uri uri = Uri.parse(url);
+        Intent browser = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(browser);
     }
 }

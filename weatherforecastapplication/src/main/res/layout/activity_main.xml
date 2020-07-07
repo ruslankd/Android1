@@ -37,27 +37,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            tools:ignore="UselessParent"
+            android:background="#3f000000">
 
             <TextView
                 android:id="@+id/textViewCity"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
                 android:layout_weight="1"
-                android:background="#3f000000"
+                android:textSize="16sp"
                 android:text="Moscow"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:paddingStart="5dp"/>
+
+            <Button
+                android:id="@+id/buttonInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:drawableStart="@drawable/ic_info"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:onClick="onButtonInfoClick"/>
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:background="@android:color/transparent"
-                android:drawableTop="@drawable/ic_baseline_search_24"
-                android:gravity="center_horizontal|top"
-                android:onClick="clickChangeCity" />
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:onClick="clickChangeCity"
+                android:background="@android:color/transparent"/>
         </LinearLayout>
     </FrameLayout>
 
@@ -66,14 +82,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/frameLayout2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical"
-            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/textView2"
@@ -84,6 +92,13 @@
                 android:textColor="#FFFFFF"
                 android:textSize="100sp"
                 tools:ignore="RtlSymmetry" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout3">
 
             <TextView
                 android:id="@+id/textView3"
@@ -99,11 +114,10 @@
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:background="#3f000000"/>
-
-        </LinearLayout>
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent">
