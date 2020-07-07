@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextClock
-        android:id="@+id/textClock"
+    <FrameLayout
+        android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:format12Hour="@string/format12Hour"
-        android:format24Hour="@null"
-        android:gravity="end"
-        android:textColor="#ffffff"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:format12Hour="@string/format12Hour"
+            android:format24Hour="@null"
+            android:gravity="end"
+            android:textColor="#ffffff"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal"
-            android:layout_marginLeft="10dp">
+            tools:ignore="UselessParent">
 
-            <Spinner
-                android:id="@+id/spinner"
+            <TextView
+                android:id="@+id/textViewCity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="#3f000000"
+                android:text="Moscow"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/button"
@@ -42,29 +57,37 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/ic_baseline_search_24"
                 android:gravity="center_horizontal|top"
-                android:paddingTop="20dp"/>
+                android:onClick="clickChangeCity" />
         </LinearLayout>
+    </FrameLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="20°"
-            android:textColor="#FFFFFF"
-            android:textSize="100sp" />
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="#3f000000"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:text="20°"
+                android:textColor="#FFFFFF"
+                android:textSize="100sp"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="1"
 
@@ -74,8 +97,35 @@
                 android:paddingRight="5dp"
                 android:text="@string/weather_forecast"
                 android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:background="#3f000000"/>
 
         </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/buttonSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="#CC000000"
+                android:drawableEnd="@drawable/ic_baseline_settings_24"
+                android:paddingEnd="5dp"
+                android:onClick="clickButtonSettings"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
-</LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

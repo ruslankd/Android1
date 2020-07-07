@@ -1,2 +1,2 @@
-include ':app', ':weatherforecastapplication'
+include ':weatherforecastapplication'
 rootProject.name='Android1'
