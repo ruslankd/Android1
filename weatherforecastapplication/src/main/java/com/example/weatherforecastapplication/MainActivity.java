@@ -3,14 +3,18 @@ package com.example.weatherforecastapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG = "MyLog";
+    Settings settings;
+    TextView textViewOfCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +25,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
 
-        Intent intent = getIntent();
-        boolean checkedDarkTheme = intent.getBooleanExtra("darkThemeFlag", false);
-        if (checkedDarkTheme) {
-            ((View) findViewById(R.id.mainLayout)).setBackgroundResource(R.drawable.dark);
-        }
-
-//        String[] cities = new String[]{
-//                "Moscow",
-//                "St. Petersburg",
-//                "Yekaterinburg",
-//                "Sochi",
-//                "Vladivostok"
-//        };
+        settings = Settings.getInstance();
+        textViewOfCity = (TextView) findViewById(R.id.textViewCity);
     }
 
     @Override
@@ -50,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         String s = "MainActivity: onResume";
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         Log.d(LOG, s);
+
+
+        textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
+
+        View v = (View) findViewById(R.id.mainLayout);
+        v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
     }
 
     @Override
@@ -84,5 +83,12 @@ public class MainActivity extends AppCompatActivity {
     public void clickButtonSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void onButtonInfoClick(View view) {
+        String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
+        Uri uri = Uri.parse(url);
+        Intent browser = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(browser);
     }
 }

@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B1B1B"
     android:orientation="vertical"
-    tools:context=".CitySelectionActivity"
-    android:background="#1B1B1B">
+    tools:context=".CitySelectionActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#3A3A3A"
-        android:orientation="horizontal"
-        android:paddingTop="7dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="5"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/ic_baseline_arrow_back_24"
             android:gravity="center_horizontal|center_vertical"
-            android:onClick="clickBack"/>
+            android:onClick="clickBack" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:paddingStart="15dp"
+            android:gravity="center"
             android:text="@string/settlements"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             tools:ignore="RtlSymmetry" />
+
+
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextCity"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enter_the_title"
-        android:textColorHint="#5E5E5E"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:textColor="#ffffff"/>
+        android:divider="@color/cardview_dark_background"
+        android:dividerHeight="1dp"/>
+
 </LinearLayout>
