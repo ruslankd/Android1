@@ -1,6 +1,9 @@
 package com.example.weatherforecastapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,79 +19,31 @@ public class MainActivity extends AppCompatActivity {
     Settings settings;
     TextView textViewOfCity;
 
+    MainFragment mainFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String s = "MainActivity: onCreate";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
+//        settings = Settings.getInstance();
+//        textViewOfCity = (TextView) findViewById(R.id.textViewCity);
 
-        settings = Settings.getInstance();
-        textViewOfCity = (TextView) findViewById(R.id.textViewCity);
-    }
+        mainFragment = new MainFragment();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        String s = "MainActivity: onStart";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragmentContainer, mainFragment);
+        transaction.addToBackStack("main");
+        transaction.commit();
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        String s = "MainActivity: onResume";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
 
-
-        textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
-
-        View v = (View) findViewById(R.id.mainLayout);
-        v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        String s = "MainActivity: onPause";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        String s = "MainActivity: onStop";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        String s = "MainActivity: onDestroy";
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        Log.d(LOG, s);
-    }
-
-    public void clickChangeCity(View view) {
-        Intent intent = new Intent(this, CitySelectionActivity.class);
-        startActivity(intent);
-    }
-
-    public void clickButtonSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    public void onButtonInfoClick(View view) {
-        String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
-        Uri uri = Uri.parse(url);
-        Intent browser = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(browser);
-    }
 }
