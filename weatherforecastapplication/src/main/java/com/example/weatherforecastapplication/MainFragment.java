@@ -9,11 +9,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +29,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     Settings settings;
     TextView textViewOfCity;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +42,22 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         ((Button) root.findViewById(R.id.buttonInfo)).setOnClickListener(this);
         ((Button) root.findViewById(R.id.buttonSettings)).setOnClickListener(this);
 
+        String[] data = getResources().getStringArray(R.array.temperatures);
+        initRecyclerView(data, root);
+
         return root;
+    }
+
+    private void initRecyclerView(String[] data, View root) {
+        RecyclerView rwTemperature = root.findViewById(R.id.rwTemperature);
+        rwTemperature.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL, false);
+        rwTemperature.setLayoutManager(layoutManager);
+
+        TemperatureAdapter adapter = new TemperatureAdapter(data);
+        rwTemperature.setAdapter(adapter);
     }
 
     @Override

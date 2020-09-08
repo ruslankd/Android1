@@ -88,10 +88,11 @@
             tools:ignore="RtlSymmetry" />
     </FrameLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/frameLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/frameLayout3">
 
         <TextView
@@ -108,7 +109,30 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:background="#3f000000"/>
-    </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:background="#3f000000">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/on7day"
+                android:textColor="#ffffff"
+                android:paddingStart="5dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rwTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout5"
@@ -118,20 +142,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            tools:ignore="UselessParent"
+            android:background="#CC000000">
 
             <Button
                 android:id="@+id/buttonSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_gravity="end"
-                android:background="#CC000000"
+                android:background="#00000000"
                 android:drawableEnd="@drawable/ic_baseline_settings_24"
                 android:paddingEnd="5dp"
-                android:onClick="clickButtonSettings"
                 tools:ignore="RtlSymmetry" />
         </LinearLayout>
     </FrameLayout>

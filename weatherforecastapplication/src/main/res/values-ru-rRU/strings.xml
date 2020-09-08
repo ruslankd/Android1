@@ -6,4 +6,7 @@
     <string name="settlements">Населенные пункты</string>
     <string name="settings">Настройки</string>
     <string name="dark_theme">Темная тема</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="now">&lt;u>Сейчас&lt;/u></string>
+    <string name="on7day">На 7 дней:</string>
 </resources>
