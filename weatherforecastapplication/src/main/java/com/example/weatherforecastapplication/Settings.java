@@ -20,6 +20,13 @@ public class Settings {
             "Sochi",
             "Vladivostok"
     };
+    private int[][] temperatures = {
+            {18, 18, 18, 15, 13, 12, 10},
+            {14, 15, 14, 11, 14, 13, 12},
+            {15, 16, 17, 14, 14, 14, 13},
+            {22, 25, 26, 26, 27, 27, 26},
+            {18, 14, 15, 15, 14, 16, 15}
+    };
     private int currentIndexOfCity = 0;
 
     public boolean isDarkThemeFlag() {
@@ -44,5 +51,9 @@ public class Settings {
 
     public void setCurrentIndexOfCity(int currentIndexOfCity) {
         this.currentIndexOfCity = currentIndexOfCity;
+    }
+
+    public int[][] getTemperatures() {
+        return temperatures;
     }
 }

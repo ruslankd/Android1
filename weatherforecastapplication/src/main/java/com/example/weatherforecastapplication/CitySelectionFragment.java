@@ -4,17 +4,21 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class CitySelectionFragment extends Fragment {
 
-    ListView list;
+    RecyclerView rvCities;
     Settings settings;
     View root;
 
@@ -24,30 +28,39 @@ public class CitySelectionFragment extends Fragment {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_city_selection, container, false);
 
-        return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         settings = Settings.getInstance();
-        list = (ListView) root.findViewById(R.id.listView);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(root.getContext(), R.layout.listview, R.id.textViewList, settings.getCities());
-        list.setAdapter(arrayAdapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                settings.setCurrentIndexOfCity(position);
-                getFragmentManager().popBackStack();
-            }
-        });
+        String[] data = settings.getCities();
+        initRwCities(data);
 
         root.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
+            }
+        });
+        return root;
+    }
+
+    private void initRwCities(String[] data) {
+        rvCities = (RecyclerView) root.findViewById(R.id.rvCities);
+        rvCities.setHasFixedSize(true);
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),
+                LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(getContext().getResources().getDrawable(R.drawable.separator));
+        rvCities.addItemDecoration(itemDecoration);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvCities.setLayoutManager(layoutManager);
+
+        CityAdapter adapter = new CityAdapter(data);
+        rvCities.setAdapter(adapter);
+
+        adapter.SetOnItemClickListener(new CityAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                settings.setCurrentIndexOfCity(position);
+                getFragmentManager().popBackStack();
             }
         });
     }

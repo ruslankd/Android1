@@ -25,10 +25,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     Settings settings;
-    TextView textViewOfCity;
+    TextView textViewOfCity, tv2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,13 +44,18 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         ((Button) root.findViewById(R.id.buttonInfo)).setOnClickListener(this);
         ((Button) root.findViewById(R.id.buttonSettings)).setOnClickListener(this);
 
-        String[] data = getResources().getStringArray(R.array.temperatures);
-        initRecyclerView(data, root);
+        tv2 = root.findViewById(R.id.textView2);
+        int currentT = settings.getTemperatures()[settings.getCurrentIndexOfCity()][0];
+        String currentTString = ((currentT > 0) ? "+" : "") + String.valueOf(currentT);
+        currentTString += "°";
+        tv2.setText(currentTString);
+
+        initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()], root);
 
         return root;
     }
 
-    private void initRecyclerView(String[] data, View root) {
+    private void initRecyclerView(int[] data, View root) {
         RecyclerView rwTemperature = root.findViewById(R.id.rwTemperature);
         rwTemperature.setHasFixedSize(true);
 

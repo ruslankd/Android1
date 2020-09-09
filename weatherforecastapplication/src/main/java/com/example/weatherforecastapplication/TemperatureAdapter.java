@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.ViewHolder> {
 
-    private String[] dataSource;
+    private int[] dataSource;
 
-    public TemperatureAdapter(String[] dataSource) {
+    public TemperatureAdapter(int[] dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -26,7 +26,9 @@ public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTextView().setText(dataSource[position]);
+        String s = ((dataSource[position] > 0) ? "+" : "") + String.valueOf(dataSource[position]);
+        s += "°";
+        holder.getTextView().setText(s);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView;
+            textView = (TextView) itemView.findViewById(R.id.tvTemperature);
         }
 
         public TextView getTextView() {
