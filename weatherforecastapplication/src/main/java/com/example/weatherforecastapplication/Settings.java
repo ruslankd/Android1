@@ -41,10 +41,6 @@ public class Settings {
         return cities;
     }
 
-    public void setCities(String[] cities) {
-        this.cities = cities;
-    }
-
     public int getCurrentIndexOfCity() {
         return currentIndexOfCity;
     }

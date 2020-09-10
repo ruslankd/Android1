@@ -47,7 +47,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.tvCity);
+            textView = itemView.findViewById(R.id.tvCity);
 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

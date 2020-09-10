@@ -3,29 +3,13 @@ package com.example.weatherforecastapplication;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Arrays;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 
@@ -34,20 +18,18 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         settings = Settings.getInstance();
-        textViewOfCity = (TextView) root.findViewById(R.id.textViewCity);
+        textViewOfCity = root.findViewById(R.id.textViewCity);
         textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
 
-        ((Button) root.findViewById(R.id.button)).setOnClickListener(this);
-        ((Button) root.findViewById(R.id.buttonInfo)).setOnClickListener(this);
-        ((Button) root.findViewById(R.id.buttonSettings)).setOnClickListener(this);
+        (root.findViewById(R.id.button)).setOnClickListener(this);
+        (root.findViewById(R.id.buttonInfo)).setOnClickListener(this);
+        (root.findViewById(R.id.buttonSettings)).setOnClickListener(this);
 
         tv2 = root.findViewById(R.id.textView2);
         int currentT = settings.getTemperatures()[settings.getCurrentIndexOfCity()][0];
-        String currentTString = ((currentT > 0) ? "+" : "") + String.valueOf(currentT);
-        currentTString += "°";
+        String currentTString = ((currentT > 0) ? "+" : "") + currentT + "°";
         tv2.setText(currentTString);
 
         initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()], root);

@@ -26,8 +26,7 @@ public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String s = ((dataSource[position] > 0) ? "+" : "") + String.valueOf(dataSource[position]);
-        s += "°";
+        String s = ((dataSource[position] > 0) ? "+" : "") + dataSource[position] + "°";
         holder.getTextView().setText(s);
     }
 
@@ -36,12 +35,12 @@ public class TemperatureAdapter extends RecyclerView.Adapter<TemperatureAdapter.
         return dataSource.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.tvTemperature);
+            textView = itemView.findViewById(R.id.tvTemperature);
         }
 
         public TextView getTextView() {
