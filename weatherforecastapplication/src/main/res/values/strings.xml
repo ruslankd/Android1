@@ -8,4 +8,6 @@
     <string name="dark_theme">Dark theme</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="now">&lt;u>Now&lt;/u></string>
+    <string name="on7day">На 7 дней:</string>
 </resources>

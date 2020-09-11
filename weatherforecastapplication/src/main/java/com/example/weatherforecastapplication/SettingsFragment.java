@@ -17,7 +17,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_settings, container, false);
 
         darkThemeSwitch = layout.findViewById(R.id.switch1);
