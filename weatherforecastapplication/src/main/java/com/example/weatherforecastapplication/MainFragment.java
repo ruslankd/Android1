@@ -11,34 +11,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
+
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     Settings settings;
-    TextView textViewOfCity, tv2;
+    MaterialTextView textViewOfCity, tv2;
+    RecyclerView rwTemperature;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        settings = Settings.getInstance();
+
         textViewOfCity = root.findViewById(R.id.textViewCity);
-        textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
 
         (root.findViewById(R.id.button)).setOnClickListener(this);
         (root.findViewById(R.id.buttonInfo)).setOnClickListener(this);
-        (root.findViewById(R.id.buttonSettings)).setOnClickListener(this);
 
         tv2 = root.findViewById(R.id.textView2);
-        int currentT = settings.getTemperatures()[settings.getCurrentIndexOfCity()][0];
-        String currentTString = ((currentT > 0) ? "+" : "") + currentT + "°";
-        tv2.setText(currentTString);
-
-        initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()], root);
+        rwTemperature = root.findViewById(R.id.rwTemperature);
 
         return root;
     }
 
-    private void initRecyclerView(int[] data, View root) {
-        RecyclerView rwTemperature = root.findViewById(R.id.rwTemperature);
+    private void initRecyclerView(int[] data) {
         rwTemperature.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
@@ -52,9 +49,16 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        settings = Settings.getInstance();
         textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
 
-        View v = getView().getRootView().findViewById(R.id.mainLayout);
+        int currentT = settings.getTemperatures()[settings.getCurrentIndexOfCity()][0];
+        String currentTString = ((currentT > 0) ? "+" : "") + currentT + "°";
+        tv2.setText(currentTString);
+
+        initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()]);
+
+        View v = getView().getRootView().findViewById(R.id.nav_host_fragment);
         v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
     }
 
@@ -62,24 +66,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button :
-                CitySelectionFragment citySelectionFragment = new CitySelectionFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainer, citySelectionFragment)
-                        .addToBackStack(null)
-                        .commit();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.putExtra("fragment", "city");
+                startActivity(intent);
                 break;
             case R.id.buttonInfo :
                 String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
                 Uri uri = Uri.parse(url);
                 Intent browser = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(browser);
-                break;
-            case R.id.buttonSettings :
-                SettingsFragment settingsFragment = new SettingsFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainer, settingsFragment)
-                        .addToBackStack(null)
-                        .commit();
                 break;
         }
     }

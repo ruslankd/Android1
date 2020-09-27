@@ -1,8 +1,13 @@
 package com.example.weatherforecastapplication;
 
+import android.app.Notification;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class CitySelectionFragment extends Fragment {
 
@@ -26,12 +34,9 @@ public class CitySelectionFragment extends Fragment {
         String[] data = settings.getCities();
         initRwCities(data);
 
-        root.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.city_selection));
+
         return root;
     }
 
@@ -54,8 +59,14 @@ public class CitySelectionFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 settings.setCurrentIndexOfCity(position);
-                getFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().finish();
     }
 }
