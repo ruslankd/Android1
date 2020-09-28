@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
@@ -58,7 +57,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()]);
 
-        View v = getView().getRootView().findViewById(R.id.nav_host_fragment);
+        View v = requireView().getRootView().findViewById(R.id.nav_host_fragment);
         v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
     }
 
@@ -71,10 +70,17 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.buttonInfo :
-                String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
-                Uri uri = Uri.parse(url);
-                Intent browser = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(browser);
+                Snackbar.make(requireView(), "Получить информацию о городе?", Snackbar.LENGTH_LONG)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String url = "https://en.wikipedia.org/wiki/" + settings.getCities()[settings.getCurrentIndexOfCity()];
+                                Uri uri = Uri.parse(url);
+                                Intent browser = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(browser);
+                            }
+                        }).show();
+
                 break;
         }
     }
