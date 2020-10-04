@@ -1,7 +1,25 @@
 package com.example.weatherforecastapplication;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import com.example.weatherforecastapplication.weather.Weather;
+import com.example.weatherforecastapplication.weather.WeatherData;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
+import javax.net.ssl.HttpsURLConnection;
+
 public class Settings {
     private static Settings instance = null;
+    private static final String TAG = "WEATHER";
 
     private Settings() {}
 
@@ -13,9 +31,10 @@ public class Settings {
     }
 
     private boolean darkTheme = false;
+    private double currT;
     private String[] cities = new String[]{
             "Moscow",
-            "St. Petersburg",
+            "Saint Petersburg",
             "Yekaterinburg",
             "Sochi",
             "Vladivostok"
@@ -49,7 +68,48 @@ public class Settings {
         this.currentIndexOfCity = currentIndexOfCity;
     }
 
-    public int[][] getTemperatures() {
-        return temperatures;
+    public String getTemperature() {
+        calcTemp();
+        double temp = currT - 273.15;
+        return (((temp > 0) ? "+" : "") + String.format(Locale.US,"%.2f", temp) + "°");
+    }
+
+    private void calcTemp() {
+        try {
+            final URL uri = new URL("https://api.openweathermap.org/data/2.5/weather?q=" +
+                    cities[getCurrentIndexOfCity()] +
+                    ",RU&appid=" + BuildConfig.WEATHER_API_KEY);
+            final Handler handler = new Handler(Looper.getMainLooper());
+
+            new Thread(() -> {
+                HttpsURLConnection urlConnection = null;
+                try {
+                    urlConnection = (HttpsURLConnection) uri.openConnection();
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setReadTimeout(10000);
+
+                    BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String result = getLines(in);
+
+                    Gson gson = new Gson();
+                    final WeatherData weatherData = gson.fromJson(result, WeatherData.class);
+                    handler.post(() -> currT = weatherData.getMain().getTemp());
+                } catch (Exception e) {
+                    Log.e(TAG, "Fail connection", e);
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+            }).start();
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "Fail URI", e);
+            e.printStackTrace();
+        }
+    }
+
+    private String getLines(BufferedReader in) {
+        return in.lines().collect(Collectors.joining("\n"));
     }
 }
