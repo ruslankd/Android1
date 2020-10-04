@@ -7,39 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
-    <FrameLayout
-        android:id="@+id/frameLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextClock
-            android:id="@+id/textClock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:format12Hour="@string/format12Hour"
-            android:format24Hour="@null"
-            android:gravity="end"
-            android:textColor="#ffffff"/>
-
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
             tools:ignore="UselessParent"
             android:background="#3f000000">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewCity"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -50,25 +32,29 @@
                 android:paddingStart="5dp"
                 tools:ignore="RtlSymmetry" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:drawableStart="@drawable/ic_info"
-                android:background="@android:color/transparent"
+                android:padding="1dp"
+                app:icon="@drawable/ic_info"
+                app:iconTint="#ffffff"
                 android:gravity="center"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:padding="1dp"
+                app:icon="@drawable/ic_baseline_search_24"
+                app:iconTint="#ffffff"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:background="@android:color/transparent"/>
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
         </LinearLayout>
     </FrameLayout>
 
@@ -78,7 +64,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/frameLayout2">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +81,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/frameLayout3">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +103,7 @@
             android:layout_marginTop="5dp"
             android:background="#3f000000">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/on7day"
@@ -132,32 +118,6 @@
                 />
         </LinearLayout>
 
-
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent"
-            android:background="#CC000000">
-
-            <Button
-                android:id="@+id/buttonSettings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="#00000000"
-                android:drawableEnd="@drawable/ic_baseline_settings_24"
-                android:paddingEnd="5dp"
-                tools:ignore="RtlSymmetry" />
-        </LinearLayout>
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

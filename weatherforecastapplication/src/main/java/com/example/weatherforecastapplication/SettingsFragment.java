@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsFragment extends Fragment {
 
-    Switch darkThemeSwitch;
+    SwitchMaterial darkThemeSwitch;
     Settings settings;
 
     @Override
@@ -22,17 +23,12 @@ public class SettingsFragment extends Fragment {
         darkThemeSwitch = layout.findViewById(R.id.switch1);
         settings = Settings.getInstance();
 
-        layout.findViewById(R.id.buttonBackFromSettings).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
-
         layout.findViewById(R.id.switch1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 settings.setDarkTheme(darkThemeSwitch.isChecked());
+                View view = getView().getRootView().findViewById(R.id.nav_host_fragment);
+                view.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
             }
         });
 
