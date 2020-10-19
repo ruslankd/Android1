@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="5dp"
             android:textColor="#FFFFFF"
-            android:textSize="100sp"
+            android:textSize="90sp"
             tools:ignore="RtlSymmetry" />
     </FrameLayout>
 

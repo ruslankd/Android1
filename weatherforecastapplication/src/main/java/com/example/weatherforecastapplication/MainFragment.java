@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.Locale;
+
 public class MainFragment extends Fragment implements View.OnClickListener {
 
     Settings settings;
@@ -30,6 +32,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         tv2 = root.findViewById(R.id.textView2);
         rwTemperature = root.findViewById(R.id.rwTemperature);
+
 
         return root;
     }
@@ -51,11 +54,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         settings = Settings.getInstance();
         textViewOfCity.setText(settings.getCities()[settings.getCurrentIndexOfCity()]);
 
-        int currentT = settings.getTemperatures()[settings.getCurrentIndexOfCity()][0];
-        String currentTString = ((currentT > 0) ? "+" : "") + currentT + "°";
-        tv2.setText(currentTString);
+        tv2.setText(settings.getTemperature());
 
-        initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()]);
+        //initRecyclerView(settings.getTemperatures()[settings.getCurrentIndexOfCity()]);
 
         View v = requireView().getRootView().findViewById(R.id.nav_host_fragment);
         v.setBackgroundResource(settings.isDarkThemeFlag() ? R.drawable.dark : R.drawable.background);
